@@ -1,0 +1,29 @@
+/* regole generali */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* regole container */
+#container{
+    width: 30%;
+    margin: 80px auto;
+}
+
+/* regole immagini */
+.item > img{
+    max-width: 100%;
+}
+
+.active{
+    display: block;
+}
+
+.hidden{
+    display: none;
+}
+
+div > .freccia{
+    font-size: 50px;
+}
