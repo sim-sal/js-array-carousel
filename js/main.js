@@ -1,15 +1,6 @@
-// seleziono il container presente nel DOM
-// var contenitore = document.getElementById("container");
-// console.log(contenitore);
-
-// creo l'arrey contenente le immagini
-// var images = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp"];
-// console.log(images);
-
 // variabili globali
-const generalContainer = document.getElementById("container");
+const generalContainer = document.getElementById("img-container");
 let square;
-let activeItem = 0;
 
 // creare array con immagini
 let listImg = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp"];
@@ -23,35 +14,73 @@ for (i = 0; i < listImg.length; i++){
     generalContainer.append(square);
 
     // inserisco le immagini nel rispettivo div 
-    square.innerHTML = `<img src="img/${listImg[activeItem++]}">`;
+    square.innerHTML = `<img src="img/${listImg[i]}">`;
     
     // aggiunta classe stile css
     square.classList.add("item");
-    // square.classList.add("active");
     
-    if([i] != 0){
-        
-        square.classList.add("hidden");
-        
-    }
 }
 
+// assegno al primo "div" contenente l'immagine la classe active
+const activeImg = document.querySelector("div > .item");
+activeImg.classList.add("active");
 
 // seleziono il pulsante per far scorrere le immagini
-let freccia = document.querySelector('.freccia');
+let forward = document.querySelector('.forward');
 
-// gestisco l'evento sul click sul pulsante freccia
-freccia.addEventListener('click',
+// gestisco l'evento sul click sul pulsante forward
+let activeItem = 0;
+
+forward.addEventListener('click',
 
     function(){
-        console.log('hai clickato');
+        // seleziono tutte le immagini tramite la classe item
+        let items = document.querySelectorAll(".item");
+        console.log(items);
+
+        // rimuovo a tutte le immagini la classe active
+        items[activeItem].classList.remove("active");
+
+        if (activeItem === listImg.length - 1) {
+            activeItem = -1;
+        }
+
+        // incremento il valore di posizionamento
+        activeItem++;
         
-         
+        // aggiungo la classe per rendere l'immagine visibile
+        items[activeItem].classList.add("active");
+        
     }
 
 )
 
+// eseguo il procedimento inverso per il bottone back
+let back = document.querySelector(".back");
 
+back.addEventListener('click',
+
+    function(){
+        // seleziono tutte le immagini tramite la classe item
+        let items = document.querySelectorAll(".item");
+        console.log(items);
+
+        // rimuovo a tutte le immagini la classe active
+        items[activeItem].classList.remove("active");
+
+        if (activeItem === 0) {
+            activeItem = listImg.length;
+        }
+
+        // decremento il valore di posizionamento
+        activeItem--;
+        
+        // aggiungo la classe per rendere l'immagine visibile
+        items[activeItem].classList.add("active");
+        
+    }
+
+)
 
 
 
